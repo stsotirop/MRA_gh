@@ -61,27 +61,35 @@ Run MRA RM:
 Lasche:
 - Lasche ropes for each order. 
 - Data tree of List of integers.
+
 Num Loose:
 - Number of loose ropes for each order. 
 - List of integers.
+
 Mean Loose:
 - Average length of loose ropes for each order. 
 - List of numbers.
+
 Min Loose:
 - Minimum length of loose ropes for each order. 
 - List of numbers.
+
 Num over:
 - Number of over ropes for each order. 
 - List of integers.
+
 Mean over:
 - Average length of over ropes for each order. 
 - List of numbers.
+
 Max over:
 - Maximum length of loose ropes for each order. 
 - List of numbers.
+
 Per Dif:
 - Percentage (%) of ropes that are different from lmax for each order. 
 - List of numbers.
+
 The outputs: “Connectivity”, “Tolerance”, “Final Points”, “Lfinal” are necessary data for the representation of the structure after the end of each order. The user must connect these outputs to the equivalent inputs of the “MRAplot” component.
 
 # MRAplot
@@ -90,6 +98,7 @@ The outputs: “Connectivity”, “Tolerance”, “Final Points”, “Lfinal�
 Max Lengths (same with MRA):
 - Maximum lengths for the different orders. The length of the list is the number of the orders that the algorithm will run. 
 - List of numbers.
+
 Display Order:
 - Defines the structure of the order that the user wants to produce. If the user selects a number bigger than the orders that the method ran, the component is not running.
 - Integer.
@@ -98,6 +107,7 @@ Display Order:
 Order Points:
 - The coordinate of the points for the selected order. 
 - List of Point3d (Grasshopper object)
+
 Ropes:
 - The final ropes for the selected order. 
 - List of Line (Grasshopper object)
