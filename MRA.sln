@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRA", "MRA\MRA.csproj", "{03A0D1BF-22D2-4C78-9E93-0FF96560A99B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03A0D1BF-22D2-4C78-9E93-0FF96560A99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A0D1BF-22D2-4C78-9E93-0FF96560A99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A0D1BF-22D2-4C78-9E93-0FF96560A99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A0D1BF-22D2-4C78-9E93-0FF96560A99B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {735A9A0D-190F-48D2-B02B-483038F2A8C4}
+	EndGlobalSection
+EndGlobal
