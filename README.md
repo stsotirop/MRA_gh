@@ -1,4 +1,4 @@
-# MRA_gh
+# MRA
 
 ## Input parameters:
 Max Lengths:
