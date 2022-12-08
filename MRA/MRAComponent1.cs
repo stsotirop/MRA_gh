@@ -43,10 +43,17 @@ namespace MRA
             pManager.AddPointParameter("ConPointE", "ConPointE", "ConPointE", GH_ParamAccess.list);
             pManager.AddPointParameter("UnConPointS", "UnConPointS", "UnConPointS", GH_ParamAccess.list);
             pManager.AddPointParameter("UnConPointE", "UnConPointE", "UnConPointE", GH_ParamAccess.list);
+            pManager.AddPointParameter("Loaded points", "Loaded points", "Loaded points", GH_ParamAccess.list);
+            pManager.AddVectorParameter("Load vectors", "Loaded vectors", "Loaded vectors", GH_ParamAccess.list);
             pManager.AddNumberParameter("Stiffness RM", "Stiffness RM", "Stiffness RM", GH_ParamAccess.item);
             pManager.AddNumberParameter("Time Step RM", "Time Step RM", "Time Step RM", GH_ParamAccess.item);
             pManager.AddNumberParameter("Max Iterations RM", "Max Iterations RM", "Max Iterations RM", GH_ParamAccess.item);
             pManager.AddBooleanParameter("Run MRA RM", "Run MRA RM", "Run MRA RM", GH_ParamAccess.item);
+            pManager[10].Optional = true;
+            pManager[11].Optional = true;
+            pManager[12].Optional = true;
+            pManager[13].Optional = true;
+            pManager[14].Optional = true;
         }
 
         /// <summary>
@@ -100,10 +107,28 @@ namespace MRA
             DA.GetDataList("UnConPointS", iUnConPointS);
             List<Point3d> iUnConPointE = new List<Point3d>();
             DA.GetDataList("UnConPointE", iUnConPointE);
+            List<Point3d> loadedPoints = new List<Point3d>();
+            DA.GetDataList("Loaded points", loadedPoints);
+            List<Vector3d> loadMagnitude = new List<Vector3d>();
+            DA.GetDataList("Load vectors", loadMagnitude);
             DA.GetData("Stiffness RM", ref stiffnessRM);
             DA.GetData("Time Step RM", ref delta_tRM);
             DA.GetData("Max Iterations RM", ref maxIterRM);
             DA.GetData("Run MRA RM", ref runMraRM);
+
+            if (runMraRM == true)
+            {
+                if (stiffnessRM == 0 || delta_tRM == 0 || maxIterRM == 0)
+                {
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Assign parameters for the RM method");
+                    return;
+                }
+            }
+            if (loadedPoints.Count() != loadMagnitude.Count())
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "The size of the Loaded Points and Load Magnitude is not the same");
+                return;
+            }
 
             // Damping calculation
             damping = 2 * Math.Sqrt(stiffness / mass) * zita;
@@ -197,6 +222,19 @@ namespace MRA
                 {
                     tempCarichi = new double[3] { 0, 0, mass * g };
                     carichi.Add(tempCarichi);
+                }
+            }
+
+            // Point Loads
+            int tempId;
+            for (int i = 0; i < loadedPoints.Count; i++)
+            {
+                double[] tempArrow1 = new double[3] { loadedPoints[i].X, loadedPoints[i].Y, loadedPoints[i].Z };
+                tempId = points.FindIndex(l => Enumerable.SequenceEqual(tempArrow1, l));
+                double[] tempArrow2 = new double[3] { loadMagnitude[i].X, loadMagnitude[i].Y, loadMagnitude[i].Z };
+                for (int j = 0; j < 3; j++)
+                {
+                    carichi[tempId][j] += tempArrow2[j];
                 }
             }
 
