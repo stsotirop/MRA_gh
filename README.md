@@ -41,21 +41,29 @@ UnConPointE:
 - End of unconstrained points
 - List of Point3d (Grasshopper object)
 
+Loaded points: 
+- Coordinates of point loads
+- List of Point3d (Grasshopper object, optional)
+
+Loaded vectors: 
+- Magnitude of points loads given in the list Loaded points
+- List of Point3d (Grasshopper object, optional and same size with "Loaded points")
+
 Stiffness RM:
 - Springs stiffness for the method of repulsive masses
-- Number
+- Number (optional)
 
 Time Step RM: 
 - Time step for the method of repulsive masses
-- Number
+- Number (optional)
 
 Max Iterations RM: 
 - Number of maximum iterations for the method of repulsive masses
-- Number
+- Number (optional)
 
 Run MRA RM: 
 - Run or not the method of repulsive masses
-- Boolean
+- Boolean (if true, mandatory to define "Stiffness RM", "Time Step RM", "Max Iterations RM")
 
 ## Output parameters:
 Lasche:
